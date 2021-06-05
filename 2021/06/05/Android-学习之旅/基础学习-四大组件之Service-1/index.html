@@ -1,0 +1,287 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>基础学习-四大组件之Service-1 | Daisy</title><meta name="keywords" content="关键词,关键词"><meta name="author" content="Daisy"><meta name="copyright" content="Daisy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="描述">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础学习-四大组件之Service-1">
+<meta property="og:url" content="https://daisy-1999.github.io/2021/06/05/Android-%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BService-1/index.html">
+<meta property="og:site_name" content="Daisy">
+<meta property="og:description" content="描述">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images.unsplash.com/photo-1605940169841-60884072a854?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+<meta property="article:published_time" content="2021-06-05T13:42:01.000Z">
+<meta property="article:modified_time" content="2021-06-05T15:26:31.938Z">
+<meta property="article:author" content="Daisy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1605940169841-60884072a854?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://daisy-1999.github.io/2021/06/05/Android-%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BService-1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-center"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-06-05 23:26:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HowieHye/StaticFile@master/Blog/css/howiehye.min.css" media="defer" onload="this.media='all'"><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/avatar_img.41zmp9hnbv40.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">49</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">27</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://images.unsplash.com/photo-1605940169841-60884072a854?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Daisy</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">基础学习-四大组件之Service-1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-06-05T13:42:01.000Z" title="发表于 2021-06-05 21:42:01">2021-06-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-05T15:26:31.938Z" title="更新于 2021-06-05 23:26:31">2021-06-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/">学习之旅</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/Service/">Service</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="基础学习-四大组件之Service-1"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>Activity组件的学习就先告一段落，今天学习的内容是Service相关知识。</p>
+<p><strong>Service是什么？</strong></p>
+<p>Service翻译过来就是服务，是Android四大组件之一，属于计算型组件</p>
+<p>Service提供需要在后台长期运行的服务，类似于复杂计算、音乐播放、下载、文件读写等</p>
+<p><strong>特点</strong></p>
+<ul>
+<li>没有用户界面、在后台运行、生命周期长。</li>
+<li>Service是运行在后台执行长时间运行的操作组件，它不提供任何用户界面，而作为与Activity同级的组件，它是运行在主线程中的（由于是在主线程，所以需要开一个线程开执行耗时操作）。</li>
+<li>一个组件还可以与一个Service进行绑定来实现组件之间的交互，甚至可以执行IPC（Inter-Process Communication）进程间通信。</li>
+</ul>
+<p><strong>生命周期</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20190520202425279.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI5OTY2MjAz,size_16,color_FFFFFF,t_70"></p>
+<p><strong>生命周期常用方法</strong></p>
+<p>手动调用方法</p>
+<ul>
+<li><p>启动服务   startService()</p>
+<p><img src="https://img-blog.csdnimg.cn/20190520204037597.png"></p>
+</li>
+<li><p>关闭服务   stopService()</p>
+<p><img src="https://img-blog.csdnimg.cn/20190520204044472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI5OTY2MjAz,size_16,color_FFFFFF,t_70"></p>
+</li>
+<li><p>绑定服务   bindService()</p>
+<p><img src="https://img-blog.csdnimg.cn/20190520204053976.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI5OTY2MjAz,size_16,color_FFFFFF,t_70"></p>
+<p>应用场景</p>
+<p><img src="https://img-blog.csdnimg.cn/20190520203413344.png"></p>
+</li>
+<li><p>解绑服务   unbindService()</p>
+<p><img src="https://img-blog.csdnimg.cn/20190520204101786.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI5OTY2MjAz,size_16,color_FFFFFF,t_70"> </p>
+<p>应用场景</p>
+<p><img src=""></p>
+</li>
+</ul>
+<p>内部自动调用方法</p>
+<ul>
+<li>创建服务   onCreate()</li>
+<li>开始服务   onStartCommand()</li>
+<li>销毁服务   onDestory()</li>
+<li>绑定服务   onBind()</li>
+<li>解绑服务   onUnbind()</li>
+</ul>
+<p><strong>应用场景</strong></p>
+<p>启动服务—&gt;只能使用startService()</p>
+<p><img src="https://img-blog.csdnimg.cn/20190520203408143.png"></p>
+<p>绑定服务—&gt;只能使用bindService</p>
+<p><img src="https://img-blog.csdnimg.cn/20190520203413344.png"></p>
+<p>启动服务后绑定—&gt;startService()+bindService()</p>
+<p><img src="https://img-blog.csdnimg.cn/20190520203420129.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI5OTY2MjAz,size_16,color_FFFFFF,t_70"></p>
+<p><strong>注意</strong></p>
+<p>startService()、stopService()只能开启&amp;关闭Service，无法操作Service。</p>
+<p>bindService()、unbindService()除了绑定&amp;解除Service之后还能操作Service。</p>
+<p>startService()开启的Service，绑定者退出之后Service仍然存在。</p>
+<p>bindService()开启的Service，绑定者退出后Service随着调用者退出而销毁。</p>
+<p><strong>Service分类</strong></p>
+<ul>
+<li>运行地点分类：本地服务，远程服务</li>
+<li>运行类型分类：前台服务，后台服务</li>
+<li>功能分类：可通信服务，不可通信服务</li>
+</ul>
+<p>在去了解这些分类之前，我们先了解两个专业词语</p>
+<p>ICP：Inter-Process   Communication  即跨进程通信。</p>
+<p>AIDL：Android Interface Definition Language，即Android接口定义语言，用于让某个Service与多个应用程序组件之间跨进程通信，从而实现多个应用程序共享同一个Service的功能。</p>
+<p>一、本地服务**</p>
+<p><strong>特点</strong></p>
+<ul>
+<li>运行在主线程。</li>
+<li>主线程被终止后，服务也会被中止。</li>
+<li>节约资源，不需要AIDL/IPC，简便。</li>
+</ul>
+<p><strong>场景</strong></p>
+<ul>
+<li>最常用的是需要依附于某个进程，不需要常驻的服务，如音乐播放。</li>
+</ul>
+<p><strong>使用</strong></p>
+<p>步骤一：新建子类继承Service类，需要重写父类的onCreate()、onStartCommand()、onDestory()、onBind()。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class MyService extends Service &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onCreate() &#123;</span><br><span class="line">        super.onCreate();</span><br><span class="line">        System.out.println(&quot;执行了onCreat()&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public int onStartCommand(Intent intent, int flags, int startId) &#123;</span><br><span class="line">        System.out.println(&quot;执行了onStartCommand()&quot;);</span><br><span class="line">        return super.onStartCommand(intent, flags, startId);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void onDestroy() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        System.out.println(&quot;执行了onDestory()&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    @Nullable</span><br><span class="line">    @Override</span><br><span class="line">    public IBinder onBind(Intent intent) &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>步骤二：构建用于启动Service的Intent对象</p>
+<p>步骤三：调用startService()启动服务，调用stopService停止服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;构建启动服务的Intent对象</span><br><span class="line">Intent startIntent &#x3D; new Intent(this, MyService.class);</span><br><span class="line">&#x2F;&#x2F;调用startService()方法-传入Intent对象,以此启动服务</span><br><span class="line">startService(startIntent);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;构建停止服务的Intent对象</span><br><span class="line">Intent stopIntent &#x3D; new Intent(this, MyService.class);</span><br><span class="line">&#x2F;&#x2F;调用stopService()方法-传入Intent对象,以此停止服务</span><br><span class="line">stopService(stopIntent);</span><br></pre></td></tr></table></figure>
+
+<p>步骤四：在AndroidManifest.xml中注册Service</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;application</span><br><span class="line">    &#x2F;&#x2F;注册Service服务</span><br><span class="line">    &lt;service android:name&#x3D;&quot;.MyService&quot;&gt;&lt;&#x2F;service&gt;</span><br><span class="line">&lt;&#x2F;application&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>二、远程服务</strong></p>
+<p><strong>特点</strong></p>
+<ul>
+<li>运行在独立进程（占用一定资源）。</li>
+<li>服务常驻后台，不受其他Activity影响（Activity所在进程被kill时，服务仍在进行）</li>
+<li>使用AIDL进行IPC</li>
+</ul>
+<p><strong>场景</strong></p>
+<ul>
+<li> 系统级别服务（常驻）,多个应用程序共享同一个后台服务（跨进程通信） </li>
+</ul>
+<p><strong>三、前台服务</strong></p>
+<p><strong>特点</strong></p>
+<ul>
+<li>在通知栏显示通知（用户可以看见）。</li>
+</ul>
+<p><strong>场景</strong></p>
+<ul>
+<li>服务使用时需要让用户知道并进行相关操作，如音乐播放服务。</li>
+<li>服务被终止时，通知栏的通知也会消失。</li>
+</ul>
+<p><strong>使用</strong></p>
+<p>Service类onCreate()增加通知栏显示功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;添加下列代码将后台Service变成前台Service</span><br><span class="line">&#x2F;&#x2F;构建&quot;点击通知后打开MainActivity&quot;的Intent对象</span><br><span class="line">Intent notificationIntent &#x3D; new Intent(this,MainActivity.class);</span><br><span class="line">PendingIntent pendingIntent &#x3D; PendingIntent.getActivity(this,0,notificationIntent,0);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;新建Builer对象</span><br><span class="line">Notification.Builder builer &#x3D; new Notification.Builder(this);</span><br><span class="line">builer.setContentTitle(&quot;前台服务通知的标题&quot;);&#x2F;&#x2F;设置通知的标题</span><br><span class="line">builer.setContentText(&quot;前台服务通知的内容&quot;);&#x2F;&#x2F;设置通知的内容</span><br><span class="line">builer.setSmallIcon(R.mipmap.ic_launcher);&#x2F;&#x2F;设置通知的图标</span><br><span class="line">builer.setContentIntent(pendingIntent);&#x2F;&#x2F;设置点击通知后的操作</span><br><span class="line"></span><br><span class="line">Notification notification &#x3D; builer.getNotification();&#x2F;&#x2F;将Builder对象转变成普通的notification</span><br><span class="line">startForeground(1, notification);&#x2F;&#x2F;让Service变成前台Service,并在系统的状态栏显示出来</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>四、后台服务</strong></p>
+<p><strong>特点</strong></p>
+<ul>
+<li>处于后台的服务（用户无法看见）。</li>
+<li>后台任务运行完全不依赖于UI，即使Activity被销毁或者程序被关闭，主要进程还在，后台任务就可以继续运行。</li>
+</ul>
+<p><strong>场景</strong></p>
+<ul>
+<li>服务使用时不需要让用户知道并进行相关的操作，例如天气更新、日期同步。</li>
+</ul>
+<p><strong>五、可通信服务</strong></p>
+<p><strong>特点</strong></p>
+<ul>
+<li>用bindService启动</li>
+<li>调用者退出后，随调用者销毁。</li>
+<li>只有绑定Service服务（Binder类、bindService()、onBind()、unbindService()、onUnbind()）才能与Activity通信。</li>
+</ul>
+<p><strong>场景</strong></p>
+<ul>
+<li>后台服务需要与Activity进行通信</li>
+</ul>
+<p><strong>六、不可通信服务</strong></p>
+<p><strong>特点</strong></p>
+<ul>
+<li>用startService启动</li>
+<li>调用者退出后，随调用者销毁</li>
+</ul>
+<p><strong>场景</strong></p>
+<ul>
+<li>后台服务不进行任何通信。</li>
+</ul>
+<p><strong>AndroidManifest.xml中Service元素常见属性</strong></p>
+<ul>
+<li>android:name: 服务类名。可以是完整的包名+类名。也可使用. 代替包名。</li>
+<li>android:exported: 其他应用能否访问该服务，如果不能，则只有本应用或有相同用户ID的应用能访问。默认为false。</li>
+<li>android:process: 服务所运行的进程名。默认是在当前进程下运行，与包名一致。</li>
+<li>android:permission: 申请使用该服务的权限，如果没有配置下相关权限，服务将不执行</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Daisy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://daisy-1999.github.io/2021/06/05/Android-%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BService-1/">https://daisy-1999.github.io/2021/06/05/Android-%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BService-1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://daisy-1999.github.io" target="_blank">Daisy</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://images.unsplash.com/photo-1605940169841-60884072a854?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/06/04/Android-%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BActivity-3/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN@master/blog/image.wrbhvx491tc.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">基础学习-四大组件之Activity-3</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/avatar_img.41zmp9hnbv40.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Daisy</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">49</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">27</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/daisy-1999"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">往昔不悔，来日可期，成为更好的自己。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/06/05/Android-%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BService-1/" title="基础学习-四大组件之Service-1"><img src="https://images.unsplash.com/photo-1605940169841-60884072a854?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基础学习-四大组件之Service-1"/></a><div class="content"><a class="title" href="/2021/06/05/Android-%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BService-1/" title="基础学习-四大组件之Service-1">基础学习-四大组件之Service-1</a><time datetime="2021-06-05T13:42:01.000Z" title="发表于 2021-06-05 21:42:01">2021-06-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/04/Android-%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BActivity-3/" title="基础学习-四大组件之Activity-3"><img src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN@master/blog/image.wrbhvx491tc.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基础学习-四大组件之Activity-3"/></a><div class="content"><a class="title" href="/2021/06/04/Android-%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BActivity-3/" title="基础学习-四大组件之Activity-3">基础学习-四大组件之Activity-3</a><time datetime="2021-06-04T06:22:18.000Z" title="发表于 2021-06-04 14:22:18">2021-06-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/03/Android-%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BActivity-2/" title="基础学习-四大组件之Activity-2"><img src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN@master/blog/image.1cpratvmgl28.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基础学习-四大组件之Activity-2"/></a><div class="content"><a class="title" href="/2021/06/03/Android-%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BActivity-2/" title="基础学习-四大组件之Activity-2">基础学习-四大组件之Activity-2</a><time datetime="2021-06-03T02:33:50.000Z" title="发表于 2021-06-03 10:33:50">2021-06-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/02/Android-%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BActivity-1/" title="基础学习-四大组件之Activity-1"><img src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN@master/blog/image.dwdmhb281r.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基础学习-四大组件之Activity-1"/></a><div class="content"><a class="title" href="/2021/06/02/Android-%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85/%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0-%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E4%B9%8BActivity-1/" title="基础学习-四大组件之Activity-1">基础学习-四大组件之Activity-1</a><time datetime="2021-06-02T08:29:22.000Z" title="发表于 2021-06-02 16:29:22">2021-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/28/Android%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/Android%E5%BC%95%E5%AF%BC%E5%8D%87%E7%BA%A7%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/" title="Android引导升级功能的实现"><img src="https://cdn.jsdelivr.net/gh/Daisy-1999/CDN/blog/updata.3cxekv85owa0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Android引导升级功能的实现"/></a><div class="content"><a class="title" href="/2021/05/28/Android%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/Android%E5%BC%95%E5%AF%BC%E5%8D%87%E7%BA%A7%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/" title="Android引导升级功能的实现">Android引导升级功能的实现</a><time datetime="2021-05-28T02:35:00.000Z" title="发表于 2021-05-28 10:35:00">2021-05-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Daisy</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
